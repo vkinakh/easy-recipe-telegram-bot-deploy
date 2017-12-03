@@ -115,7 +115,6 @@ def check(message):
 
     if total_can_make_right_now > 0:
         for i in range(count):
-            print(results[i])
             bot.send_message(message.chat.id, results[i]['title'] + "\n" + results[i]['displayurl'])
             results_db[message.chat.id].pop(0)
         if len(results_db[message.chat.id]) > 0:
