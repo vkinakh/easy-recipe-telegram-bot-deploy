@@ -115,7 +115,8 @@ def check(message):
 
     if total_can_make_right_now > 0:
         for i in range(count):
-            bot.send_message(message.chat.id, results[i]['title'] + "\n" + results[i]['url'])
+            print(results[i])
+            bot.send_message(message.chat.id, results[i]['title'] + "\n" + results[i]['displayurl'])
             results_db[message.chat.id].pop(0)
         if len(results_db[message.chat.id]) > 0:
             if len(results_db[message.chat.id]) < int(count_db[message.chat.id]):
@@ -136,7 +137,7 @@ def showsuggestions(message):
             if len(suggestions_db[message.chat.id])<count:
                 count = len(suggestions_db[message.chat.id])
             for i in range(count):
-                bot.send_message(message.chat.id, suggestions_db[message.chat.id][i]['title'] + "\nYou need: " + ', '.join(suggestions_db[message.chat.id][i]['needs']) + '\n' + suggestions_db[message.chat.id][i]['url'])
+                bot.send_message(message.chat.id, suggestions_db[message.chat.id][i]['title'] + "\nYou need: " + ', '.join(suggestions_db[message.chat.id][i]['needs']) + '\n' + suggestions_db[message.chat.id][i]['displayurl'])
             for i in range(count):
                 suggestions_db[message.chat.id].pop(0)
         else:
@@ -300,7 +301,7 @@ def shownext(message):
             else:
                 count = int(count_db[message.chat.id])
             for i in range(count):
-                bot.send_message(message.chat.id, results_db[message.chat.id][i]['title'] + "\n" + results_db[message.chat.id][i]['url'])
+                bot.send_message(message.chat.id, results_db[message.chat.id][i]['title'] + "\n" + results_db[message.chat.id][i]['displayurl'])
             results_db[message.chat.id] = results_db[message.chat.id][count:]
             if len(results_db[message.chat.id])>0:
                 if len(results_db[message.chat.id]) < int(count_db[message.chat.id]):
